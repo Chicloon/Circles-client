@@ -13,9 +13,8 @@ const RegisterForm = (props) => {
     handleChange,
     handleBlur,
     handleSubmit,
+    touched,
   } = props;
-
-  const errorsValues = Object.values(errors);
 
   return (
     <form className="" onSubmit={handleSubmit}>
@@ -27,6 +26,7 @@ const RegisterForm = (props) => {
         id="sex"
         name="sex"
       />
+      {errors.sex && <div style={{ color: 'red' }}> {errors.sex}</div>}
       <div className="form-group">
         <div className="row">
           <label className="col">Имя</label>
@@ -42,6 +42,10 @@ const RegisterForm = (props) => {
           className="form-control"
           placeholder="Введите полные имя и фамилию"
         />
+        {errors.username &&
+          touched.username && (
+            <div style={{ color: 'red' }}> {errors.username}</div>
+          )}
       </div>
       <div className="form-group">
         <label className="">Дата рождения</label>
@@ -55,20 +59,18 @@ const RegisterForm = (props) => {
           id="birthday"
           className="form-control"
         />
+        {errors.birthday &&
+          touched.birthday && (
+            <div style={{ color: 'red' }}> {errors.birthday}</div>
+          )}
       </div>
       <button
-        // disabled={!dirty || errorsValues.length !== 0}
+        disabled={!dirty || isSubmitting}
         className="btn btn-primary btn-block btn-lg"
         type="submit"
       >
         Зарегистрироваться
       </button>
-      {errorsValues.length !== 0 &&
-        !dirty && (
-          <ul style={{ listStyle: 'none', color: 'red' }}>
-            {errorsValues.map(error => <li key={error}>{error}</li>)}
-          </ul>
-        )}
     </form>
   );
 };
@@ -78,14 +80,12 @@ const formikEnhancer = withFormik({
   validationSchema: Yup.object().shape({
     username: Yup.string().required('Введите имя'),
     sex: Yup.string().required('Выберете пол'),
-    // birthdate: Yup.string().required('Укажите дату рождения'),
+    birthday: Yup.date().required('Укажите дату рождения'),
   }),
-  handleSubmit: async (
-    values,
-    { setErrors, setSubmitting, props: { login, authorize } },
-  ) => {
-    console.log('values are... ', values);
+  handleSubmit: async (values, { setSubmitting, props: { nextStep } }) => {
     setSubmitting(false);
+    nextStep(values);
+    // console.log('values are... ', values);
   },
   displayName: 'RegisterForm',
 });

@@ -1,9 +1,11 @@
-import user from './User'
-import news from './News'
+// import user from './User';
+import store from './Store';
+import UIstore from './UIstore';
 
 const stores = {
-  user,
-  news
-}
+  // user,
+  store,
+  UIstore,
+};
 
-export default stores
+export default stores;

@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import { CenteredLayout } from '../../layouts/CenteredLayout'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+import { CenteredLayout } from '../../layouts/CenteredLayout';
 
 class Home extends Component {
   render() {
@@ -10,8 +11,8 @@ class Home extends Component {
           Регистрация
         </Link>
       </CenteredLayout>
-    )
+    );
   }
 }
 
-export default Home
+export default Home;
