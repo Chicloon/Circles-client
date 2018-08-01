@@ -22,8 +22,9 @@ class SexInput extends Component {
   render() {
     const femaleButtonId = `sex-female-${this.props.name}`;
     const maleButtonId = `sex-male-${this.props.name}`;
-    const femaleClass =
-      `btn btn-lg p-2 btn-outline-primary ${this.state.sex === 'female' ? 'active' : ''}`;
+    const femaleClass = `btn btn-lg p-2 btn-outline-primary ${
+      this.state.sex === 'female' ? 'active' : ''
+    }`;
     const maleClass = `btn btn-lg btn-outline-primary ${this.state.sex === 'male' ? 'active' : ''}`;
 
     return (
