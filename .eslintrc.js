@@ -8,6 +8,7 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 0,
     'react/prefer-stateless-function': 0,
     'no-console': 0,
+    'import/prefer-default-export': 0,
   },
   globals: {
     document: 1,
@@ -16,4 +17,4 @@ module.exports = {
   env: {
     browser: 1,
   },
-}
+};

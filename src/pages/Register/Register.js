@@ -11,17 +11,17 @@ import profilePic from './blank-profile.svg';
 @inject('UIstore')
 @observer
 class Register extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.store = props.store;
-    this.UIstore = props.UIstore;	
+    this.UIstore = props.UIstore;
   }
 
   nextStep = (values) => {
     console.log('values are...', values);
     // полсылаем данные и переходим к следующему этапу
-    this.UIstore.toggleNextStep()
-  }
+    this.UIstore.toggleNextStep();
+  };
 
   renderFirstStep = () => (
     <div className="card">
@@ -32,15 +32,14 @@ class Register extends Component {
         <RegisterForm nextStep={this.nextStep} />
       </div>
     </div>
-  )
-  
+  );
 
   render() {
     const { registerNextStep } = this.UIstore;
 
     return (
       <CenteredLayout logo title="Регистрация">
-        {registerNextStep ? <div> ... </div> : this.renderFirstStep()}        
+        {registerNextStep ? <div> ... </div> : this.renderFirstStep()}
       </CenteredLayout>
     );
   }
