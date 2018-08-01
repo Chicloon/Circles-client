@@ -1,26 +1,32 @@
-import 'semantic-ui-css/semantic.min.css';
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'mobx-react';
-// eslint-disable-next-line
-import { AppContainer } from 'react-hot-loader';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
+// import { Provider } from 'react-redux'
+// import { createStore, applyMiddleware } from 'redux'
+// import thunk from 'redux-thunk'
+// import { createLogger } from 'redux-logger'
+// import reducer from './reducers'
+import App from './App'
+import registerServiceWorker from './registerServiceWorker'
 
-import stores from './stores';
-import App from './App';
+import stores from './stores'
+import { Provider } from 'mobx-react'
+// import 'semantic-ui-css/semantic.min.css'
 
-const renderApp = (Component) => {
-  render(
-    <AppContainer>
-      <Provider {...stores}>
-        <Component />
-      </Provider>
-    </AppContainer>,
-    document.getElementById('root'),
-  );
-};
+// const middleware = [thunk]
+// if (process.env.NODE_ENV !== 'production') {
+//   middleware.push(createLogger())
+// }
 
-renderApp(App);
+// const store = createStore(reducer, applyMiddleware(...middleware))
+// console.log(stores)
 
-if (module.hot) {
-  module.hot.accept(() => renderApp(App));
-}
+ReactDOM.render(
+  <Provider {...stores}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
+  document.getElementById('root')
+)
+registerServiceWorker()

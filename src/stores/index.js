@@ -1,9 +1,9 @@
-import store from './Store';
-// import news from './News';
+import user from './User'
+import news from './News'
 
 const stores = {
-  store,
-  // news,
-};
+  user,
+  news
+}
 
-export default stores;
+export default stores

@@ -16,4 +16,4 @@ module.exports = {
   env: {
     browser: 1,
   },
-};
+}
