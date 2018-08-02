@@ -18,14 +18,22 @@ const RegisterFormOne = (props) => {
 
   return (
     <form className="" onSubmit={handleSubmit}>
-      <RadioImgInput key="oone" />
-      <RadioImgInput ids="three" />
+      {/* <RadioImgInput key="oone" /> */}
+      <RadioImgInput
+        ids={['three', 'two']}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.testing}
+        // error={!!errors.testing}
+        name="testing"
+      />
+      {errors.testing && <div style={{ color: 'red' }}> {errors.testing}</div>}
 
       <SexInput
         onChange={handleChange}
         onBlur={handleBlur}
         value={values.sex}
-        error={!!errors.sex}
+        // error={!!errors.sex}
         id="sex"
         name="sex"
       />
@@ -40,7 +48,6 @@ const RegisterFormOne = (props) => {
           value={values.username}
           // error={!!errors.username}
           type="text"
-          id="username"
           name="username"
           className="form-control"
           placeholder="Введите полные имя и фамилию"
@@ -59,7 +66,6 @@ const RegisterFormOne = (props) => {
           // error={!!errors.birthday}
           type="date"
           name="birthday"
-          id="birthday"
           className="form-control"
         />
         {errors.birthday &&
@@ -79,7 +85,12 @@ const RegisterFormOne = (props) => {
 };
 
 const formikEnhancer = withFormik({
-  mapPropsToValues: () => ({ username: '', birthday: '', sex: '' }),
+  mapPropsToValues: () => ({
+    username: '',
+    birthday: '',
+    sex: '',
+    testing: '',
+  }),
   validationSchema: Yup.object().shape({
     username: Yup.string().required('Введите имя'),
     sex: Yup.string().required('Выберете пол'),

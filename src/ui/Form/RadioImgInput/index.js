@@ -1,3 +1,3 @@
-import RadioImpInput from './RadioImpInput';
+import RadioImgInput from './RadioImgInput';
 
-export default RadioImpInput;
+export default RadioImgInput;
