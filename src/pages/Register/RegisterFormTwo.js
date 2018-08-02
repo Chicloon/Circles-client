@@ -2,7 +2,7 @@ import React from 'react';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { SexInput } from '../../ui/SexInput';
+import { SexInput } from '../../ui/Form';
 
 const RegisterFormTwo = (props) => {
   const {
@@ -28,14 +28,15 @@ const RegisterFormTwo = (props) => {
       />
       {errors.sex && <div style={{ color: 'red' }}> {errors.sex}</div>}
       <div className="form-group">
-        <div className="row">
-          <label className="col">Имя</label>
-        </div>
+        <label htmlFor="username" className="col">
+          Имя
+        </label>
+
         <input
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.username}
-          // error={!!errors.username}
+          error={errors.username}
           type="text"
           id="username"
           name="username"
@@ -43,22 +44,28 @@ const RegisterFormTwo = (props) => {
           placeholder="Введите полные имя и фамилию"
         />
         {errors.username &&
-          touched.username && <div style={{ color: 'red' }}> {errors.username}</div>}
+          touched.username && (
+            <div style={{ color: 'red' }}> {errors.username}</div>
+          )}
       </div>
       <div className="form-group">
-        <label className="">Дата рождения</label>
+        <label htmlFor="birthday" className="">
+          Дата рождения
+        </label>
         <input
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.birthday}
-          // error={!!errors.birthday}
+          error={errors.birthday}
           type="date"
           name="birthday"
           id="birthday"
           className="form-control"
         />
         {errors.birthday &&
-          touched.birthday && <div style={{ color: 'red' }}> {errors.birthday}</div>}
+          touched.birthday && (
+            <div style={{ color: 'red' }}> {errors.birthday}</div>
+          )}
       </div>
       <button
         disabled={!dirty || isSubmitting}

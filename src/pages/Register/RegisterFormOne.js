@@ -2,7 +2,7 @@ import React from 'react';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { SexInput } from '../../ui/SexInput';
+import { SexInput, RadioImgInput } from '../../ui/Form';
 
 const RegisterFormOne = (props) => {
   const {
@@ -18,6 +18,9 @@ const RegisterFormOne = (props) => {
 
   return (
     <form className="" onSubmit={handleSubmit}>
+      <RadioImgInput key="oone" />
+      <RadioImgInput ids="three" />
+
       <SexInput
         onChange={handleChange}
         onBlur={handleBlur}
@@ -43,7 +46,9 @@ const RegisterFormOne = (props) => {
           placeholder="Введите полные имя и фамилию"
         />
         {errors.username &&
-          touched.username && <div style={{ color: 'red' }}> {errors.username}</div>}
+          touched.username && (
+            <div style={{ color: 'red' }}> {errors.username}</div>
+          )}
       </div>
       <div className="form-group">
         <label className="">Дата рождения</label>
@@ -58,7 +63,9 @@ const RegisterFormOne = (props) => {
           className="form-control"
         />
         {errors.birthday &&
-          touched.birthday && <div style={{ color: 'red' }}> {errors.birthday}</div>}
+          touched.birthday && (
+            <div style={{ color: 'red' }}> {errors.birthday}</div>
+          )}
       </div>
       <button
         disabled={!dirty || isSubmitting}
