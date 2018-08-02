@@ -6,7 +6,7 @@ import { CenteredLayout } from '../../layouts/CenteredLayout';
 import RegisterFormOne from './RegisterFormOne';
 import RegisterFormTwo from './RegisterFormTwo';
 
-import profilePic from './blank-profile.svg';
+import profilePic from './images/blank-profile.svg';
 
 @inject('store')
 @inject('UIstore')
@@ -19,7 +19,7 @@ class Register extends Component {
   }
 
   nextStep = (values) => {
-    console.log('values are...', values);
+    console.log('got values...', values);
     // полсылаем данные и переходим к следующему этапу
     this.store.addUserFields(values);
     this.UIstore.toggleNextStep();
@@ -50,7 +50,7 @@ class Register extends Component {
 
   render() {
     const { registerNextStep } = this.UIstore;
-    console.log('rendering....');
+
     if (registerNextStep) {
       return this.renderFormTwo();
     }
