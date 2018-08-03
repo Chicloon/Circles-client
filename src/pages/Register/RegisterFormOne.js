@@ -26,13 +26,9 @@ const RegisterFormOne = (props) => {
         onBlur={handleBlur}
         value={values.sex}
         name="sex"
-        items={[
-          { image: womanPic, value: 'woman' },
-          { image: manPic, value: 'male' },
-        ]}
+        items={[{ image: womanPic, value: 'woman' }, { image: manPic, value: 'male' }]}
       />
-      {errors.sex &&
-        touched.sex && <div style={{ color: 'red' }}>{errors.sex}</div>}
+      {errors.sex && touched.sex && <div style={{ color: 'red' }}>{errors.sex}</div>}
       <div className="form-group">
         <BasicInput
           onChange={handleChange}
@@ -42,8 +38,7 @@ const RegisterFormOne = (props) => {
           name="email"
           title="Электронная почта"
         />
-        {errors.email &&
-          touched.email && <div style={{ color: 'red' }}> {errors.email}</div>}
+        {errors.email && touched.email && <div style={{ color: 'red' }}> {errors.email}</div>}
       </div>
 
       <div className="form-group">
@@ -57,9 +52,7 @@ const RegisterFormOne = (props) => {
           placeholder="Введите полные имя и фамилию"
         />
         {errors.username &&
-          touched.username && (
-            <div style={{ color: 'red' }}> {errors.username}</div>
-          )}
+          touched.username && <div style={{ color: 'red' }}> {errors.username}</div>}
       </div>
       <div className="form-group">
         <BasicInput
@@ -71,9 +64,7 @@ const RegisterFormOne = (props) => {
           title="Дата рождения"
         />
         {errors.birthday &&
-          touched.birthday && (
-            <div style={{ color: 'red' }}> {errors.birthday}</div>
-          )}
+          touched.birthday && <div style={{ color: 'red' }}> {errors.birthday}</div>}
       </div>
       <button
         disabled={!dirty || isSubmitting}
@@ -101,10 +92,7 @@ const formikEnhancer = withFormik({
     sex: Yup.string().required('Выберете пол'),
     birthday: Yup.date().required('Укажите дату рождения'),
   }),
-  handleSubmit: async (
-    values,
-    { setTouched, setSubmitting, props: { nextStep } },
-  ) => {
+  handleSubmit: async (values, { setTouched, setSubmitting, props: { nextStep } }) => {
     setSubmitting(false);
     setTouched(true);
     nextStep(values);

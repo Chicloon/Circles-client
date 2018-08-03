@@ -5,6 +5,8 @@ import { observer } from 'mobx-react';
 import styled from 'styled-components';
 import cn from 'classnames';
 
+import TitleWrapper from '../TitleWrapper';
+
 const InputsWrapper = styled.div.attrs({
   className: props =>
     (props.image
@@ -23,7 +25,9 @@ const Label = styled.label`
     background-position: center center;
     background-size: 96px;
     background-image: url(${props.image}) !important;`
-      : 'width: 100%')};
+      : `width: 100%
+      
+      `)};
 `;
 
 const RadioInput = styled.input.attrs({
@@ -53,16 +57,14 @@ class RadioImgInput extends React.Component {
   renderTitle = (title) => {
     if (title) {
       return (
-        <div className="row">
-          <label className="col">{title}</label>
-        </div>
+        <TitleWrapper title={title} />
       );
     }
     return null;
   }
 
-  renderInputField = (item, name) => {
-    const lebelCn = cn('btn btn-lg btn-outline-primary ', {
+  renderInputField = (item, name) => {    
+    const lebelCn = cn('btn btn-outline-primary', {
       active: this.activeInput === item.value,
     });
 

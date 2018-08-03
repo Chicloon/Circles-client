@@ -2,7 +2,7 @@ import React from 'react';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { RadioImgInput, BasicInput } from '../../ui/Form';
+import { RadioImgInput, BasicInput, Textarea } from '../../ui/Form';
 
 const RegisterFormTwo = (props) => {
   const {
@@ -33,12 +33,7 @@ const RegisterFormTwo = (props) => {
                 { value: 'complicated', text: 'Все сложно' },
               ]}
             />
-            {errors.status &&
-              touched.status && (
-                <div style={{ color: 'red' }}>
-                  {console.log(touched, dirty)} {errors.status}
-                </div>
-              )}
+            {errors.status && touched.status && <div style={{ color: 'red' }}>{errors.status}</div>}
           </div>
           <div className="form-group">
             <RadioImgInput
@@ -52,8 +47,7 @@ const RegisterFormTwo = (props) => {
                 { value: 'chat', text: 'Поболтать' },
               ]}
             />
-            {errors.aim &&
-              touched.aim && <div style={{ color: 'red' }}> {errors.aim}</div>}
+            {errors.aim && touched.aim && <div style={{ color: 'red' }}> {errors.aim}</div>}
           </div>
           <div className="form-group">
             <RadioImgInput
@@ -61,7 +55,7 @@ const RegisterFormTwo = (props) => {
               onBlur={handleBlur}
               value={values.education}
               title="Образование"
-              name="education "
+              name="education"
               items={[
                 { value: 'base', text: 'Начальное' },
                 { value: 'middle', text: 'Среднее' },
@@ -69,33 +63,41 @@ const RegisterFormTwo = (props) => {
               ]}
             />
             {errors.education &&
-              touched.education && (
-                <div style={{ color: 'red' }}> {errors.education}</div>
-              )}
+              touched.education && <div style={{ color: 'red' }}> {errors.education}</div>}
           </div>
           <div className="form-group">
             <BasicInput
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.username}
+              value={values.phone}
               type="text"
               name="phone"
               title="Телефон для связи"
+              note="Мы покажем этот телефон понравившимся людям с вашего согласия"
             />
-            {errors.phone &&
-              touched.phone && (
-                <div style={{ color: 'red' }}> {errors.phone}</div>
-              )}
+
+            {errors.phone && touched.phone && <div style={{ color: 'red' }}> {errors.phone}</div>}
           </div>
+          <div className="form-group">
+            <Textarea
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.about}
+              name="about"
+              title="О себе"
+              note="Расскажите о себе в свободной форме. Что вам нравится? Как вы проводите свободное время?"
+            />
+            {errors.about && touched.about && <div style={{ color: 'red' }}> {errors.about}</div>}
+          </div>
+          <button
+            disabled={!dirty || isSubmitting}
+            className="btn btn-primary btn-block btn-lg"
+            type="submit"
+          >
+            Продолжить
+          </button>
         </div>
       </div>
-      <button
-        disabled={!dirty || isSubmitting}
-        className="btn btn-primary btn-block btn-lg"
-        type="submit"
-      >
-        Зарегистрироваться
-      </button>
     </form>
   );
 };
@@ -104,18 +106,18 @@ const formikEnhancer = withFormik({
   mapPropsToValues: () => ({
     status: '',
     aim: '',
-    username: '',
     education: '',
     phone: '',
+    // about: '',
   }),
   validationSchema: Yup.object().shape({
     status: Yup.string().required('Укажите статус'),
     aim: Yup.string().required('Укажите цель'),
+    education: Yup.string().required('Укажите образование'),
+    phone: Yup.string().required('Укажите телефон'),
+    about: Yup.string().required('Расскажите о себе'),
   }),
-  handleSubmit: async (
-    values,
-    { setTouched, setSubmitting, props: { nextStep } },
-  ) => {
+  handleSubmit: async (values, { setTouched, setSubmitting, props: { nextStep } }) => {
     setSubmitting(false);
     setTouched(true);
     nextStep(values);

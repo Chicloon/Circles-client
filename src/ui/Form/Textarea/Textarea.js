@@ -3,23 +3,15 @@ import PropTypes from 'prop-types';
 
 import TitleWrapper from '../TitleWrapper';
 
-const RadioImgInput = (props) => {
+const Textarea = (props) => {
   const {
-    type,
-    title,
-    name,
-    placeholder,
-    onChange,
-    onBlur,
-    value,
-    note,
+    title, name, placeholder, onChange, onBlur, value, note,
   } = props;
 
   return (
     <React.Fragment>
       <TitleWrapper title={title} />
-      <input
-        type={type}
+      <textarea
         name={name}
         className="form-control"
         placeholder={placeholder}
@@ -32,18 +24,16 @@ const RadioImgInput = (props) => {
   );
 };
 
-RadioImgInput.propTypes = {
+Textarea.propTypes = {
   title: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  type: PropTypes.string,
   placeholder: PropTypes.string,
   note: PropTypes.string,
 };
 
-RadioImgInput.defaultProps = {
-  type: 'text',
+Textarea.defaultProps = {
   placeholder: '',
   note: '',
 };
 
-export default RadioImgInput;
+export default Textarea;
