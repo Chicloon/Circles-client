@@ -51,10 +51,13 @@ class Register extends Component {
   render() {
     const { registerNextStep } = this.UIstore;
 
-    if (registerNextStep) {
+    
+    // if (registerNextStep) {
+    //     return this.renderFormTwo();
+    //   }
+    //   return this.renderFormOne();
+
       return this.renderFormTwo();
-    }
-    return this.renderFormOne();
   }
 }
 

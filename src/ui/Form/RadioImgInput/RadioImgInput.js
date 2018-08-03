@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { observable, action } from 'mobx';
+import { observer } from 'mobx-react';
 import styled from 'styled-components';
 import cn from 'classnames';
-
-// import womanPic from './woman-with-dress.svg';
-// import manPic from './man.svg';
 
 const InputsWrapper = styled.div.attrs({
   className: props =>
@@ -33,17 +32,19 @@ const RadioInput = styled.input.attrs({
   display: none;
 `;
 
+@observer
 class RadioImgInput extends React.Component {
   constructor(props) {
     super(props);
     this.parentChangeHandler = props.onChange;
-    this.state = { active: '' };
   }
 
-  changeButtonHandler = (event) => {
+  @observable activeInput = ''
+
+  @action changeButtonHandler = (event) => {
     const { target } = event;
 
-    this.setState({ active: target.value });
+    this.activeInput = target.value;
     if (this.parentChangeHandler) {
       this.parentChangeHandler(event);
     }
@@ -62,7 +63,7 @@ class RadioImgInput extends React.Component {
 
   renderInputField = (item, name) => {
     const lebelCn = cn('btn btn-lg btn-outline-primary ', {
-      active: this.state.active === item.value,
+      active: this.activeInput === item.value,
     });
 
     return (
@@ -72,7 +73,7 @@ class RadioImgInput extends React.Component {
         image={item.image}
         onChange={e => this.changeButtonHandler(e)}
       >
-        {!item.image && item.value}
+        {item.text}
         <RadioInput name={name} value={item.value} />
       </Label>
     );
@@ -82,14 +83,16 @@ class RadioImgInput extends React.Component {
     const { items, title, name } = this.props;
 
     return (
-      <InputsWrapper
-        className="btn-group"
-        image={title}
-        htmlDataToggle="buttons"
-      >
+      <React.Fragment>
         {title && this.renderTitle(title)}
-        {items.map(item => this.renderInputField(item, name))}
-      </InputsWrapper>
+        <InputsWrapper
+          className="btn-group"
+          image={title}
+          htmlDataToggle="buttons"
+        >
+          {items.map(item => this.renderInputField(item, name))}
+        </InputsWrapper>
+      </React.Fragment>
     );
   }
 }
