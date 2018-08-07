@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
+import { observable, action } from 'mobx';
 
 import { CenteredLayout } from '../../layouts/CenteredLayout';
 
@@ -10,29 +11,31 @@ import ProfilePersonalDataForm from './ProfilePersonalDataForm';
 
 import profilePic from './images/blank-profile.svg';
 
-@inject('store')
-@inject('UIstore')
+@inject('user')
 @observer
 class Register extends Component {
   constructor(props) {
     super(props);
-    this.store = props.store;
-    this.UIstore = props.UIstore;
+    this.user = props.user;
   }
 
+  @observable registerStep = 1;
+
+  @action
   nextStep = (values) => {
     console.log('got values...', values);
     // полсылаем данные и переходим к следующему этапу
-    this.store.addUserFields(values);
-    this.UIstore.toggleNextStep();
-    if (this.UIstore.registerStep > 3) {
-      this.submitForm();
+    this.user.addUserFields(values);
+    this.registerStep += 1;
+    if (this.registerStep > 3) {
+      this.user.registerUser();
     }
   };
 
-  submitForm = () => {
-    console.log('sending data to server....');
-  };
+  // submitForm = () => {
+
+  //   console.log('sending data to server....');
+  // };
 
   renderRegisterMainDataForm = () => (
     <CenteredLayout logo title="Регистрация">
@@ -60,9 +63,9 @@ class Register extends Component {
   );
 
   render() {
-    const { registerStep } = this.UIstore;
+    // const { registerStep } = this.UIstore;
 
-    switch (registerStep) {
+    switch (this.registerStep) {
       case 1:
         return this.renderRegisterMainDataForm();
       case 2:

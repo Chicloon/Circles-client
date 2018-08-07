@@ -1,9 +1,9 @@
-// import user from './User';
+import user from './User';
 import store from './Store';
 import UIstore from './UIstore';
 
 const stores = {
-  // user,
+  user,
   store,
   UIstore,
 };
