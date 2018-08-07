@@ -2,7 +2,7 @@ import React from 'react';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { RadioImgInput, BasicInput, Textarea, SubmitButton } from '../../ui/Form';
+import { RadioImgInput, BasicInput, Textarea } from '../../ui/Form';
 
 const ProfilePersonalDataForm = (props) => {
   const { dirty, isSubmitting, handleSubmit } = props;
@@ -45,7 +45,13 @@ const ProfilePersonalDataForm = (props) => {
             title="О себе"
             note="Расскажите о себе в свободной форме. Что вам нравится? Как вы проводите свободное время?"
           />
-          <SubmitButton disabled={!dirty || isSubmitting} text="Продолжить" />
+          <button
+            disabled={!dirty || isSubmitting}
+            className="btn btn-primary btn-block btn-lg"
+            type="submit"
+          >
+            Продолжить
+          </button>
         </div>
       </div>
     </form>
