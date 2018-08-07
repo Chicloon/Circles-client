@@ -9,7 +9,7 @@ import RegisterMainDataForm from './RegisterMainDataForm';
 import PartnerFilterForm from './PartnerFilterForm';
 import ProfilePersonalDataForm from './ProfilePersonalDataForm';
 
-import profilePic from './images/blank-profile.svg';
+import profilePic from '../../images/blank-profile.svg';
 
 @inject('user')
 @observer
@@ -31,11 +31,6 @@ class Register extends Component {
       this.user.registerUser();
     }
   };
-
-  // submitForm = () => {
-
-  //   console.log('sending data to server....');
-  // };
 
   renderRegisterMainDataForm = () => (
     <CenteredLayout logo title="Регистрация">

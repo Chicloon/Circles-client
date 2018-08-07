@@ -14,6 +14,7 @@ const App = () => (
       <MainLayout>
         <Route exact path="/" component={p.Home} />
         <Route exact path="/register" component={p.Register} />
+        <Route exact path="/ready" component={p.Ready} />
       </MainLayout>
       {/* <Route component={p.NotFound} /> */}
     </Switch>

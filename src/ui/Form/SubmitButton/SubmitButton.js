@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SubmitButton = ({ disabled, text }) => (
+const SubmitButton = ({ disabled, text, children }) => (
   <button disabled={disabled} className="btn btn-primary btn-block btn-lg" type="submit">
-    {text}
+    {text} {children}
   </button>
 );
 
