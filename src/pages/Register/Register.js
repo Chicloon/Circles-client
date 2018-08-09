@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 import { observable, action } from 'mobx';
 
@@ -68,7 +68,7 @@ class Register extends Component {
       case 3:
         return this.renderPartnerFilterForm();
       default:
-        return <div> Редирект на следующую страницу </div>;
+        return <Redirect to="/ready" />;
     }
   }
 }

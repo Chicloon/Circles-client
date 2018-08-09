@@ -44,7 +44,7 @@ const PartnerFilterForm = (props) => {
               { value: 'high', text: 'Высшее' },
             ]}
           />
-          <SubmitButton disabled={!dirty || isSubmitting} text="Зарегистрироваться" />
+          <SubmitButton disabled={!dirty || isSubmitting} text="Продолжить" />
         </div>
       </div>
     </form>

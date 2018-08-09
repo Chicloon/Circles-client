@@ -20,9 +20,10 @@ class Ready extends React.Component {
     this.user.fetchCompation();
   }
 
-  submit = (e) => {
+  nextConpanion = (e) => {
     e.preventDefault();
-    console.log('sending data');
+    console.log('searching next partner');
+    // Тут должен быть метод поиска нового партнера
     this.user.fetchCompation();
   };
 
@@ -38,9 +39,14 @@ class Ready extends React.Component {
       return (
         <CenteredLayout title="Найдено соответствие">
           <div className="card">
-            <img className="card-img-top" src={profilePic} alt="" />
+            <img
+              style={{ padding: '2rem 6rem' }}
+              className="card-img-top"
+              src={profilePic}
+              alt=""
+            />
             <List>
-              <ListHeader text={name} />
+              <ListHeader active text={name} />
               <ListItem>Возраст: {age} </ListItem>
               <ListItem>Статус: {status}</ListItem>
               <ListItem>Цель: {aim}</ListItem>
@@ -51,7 +57,7 @@ class Ready extends React.Component {
               <Link to="/video" className="btn btn-primary btn-lg btn-block">
                 Хочу общаться!
               </Link>
-              <a className="btn btn-block" href="" onClick={e => this.submit(e)}>
+              <a className="btn btn-block" href="" onClick={e => this.nextConpanion(e)}>
                 Пропустить
               </a>
             </div>

@@ -1,13 +1,12 @@
 import { observable, action } from 'mobx';
+import moment from 'moment';
 
 class UIstore {
-  @observable registerStep = 1;
+  @observable duration = moment().add(5, 'm');
 
   @action
-  toggleNextStep() {
-    this.registerStep += 1;
-
-    console.log('next step', this.registerStep);
+  addMoreTime(newDuration) {
+    this.duration = newDuration;
   }
 }
 
